@@ -18,11 +18,12 @@ public class GlobalCorsConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
 
-        // Add dev + production frontend domains
-        config.setAllowedOrigins(List.of(
-                "http://localhost:5173",                // Local development
-                "https://ib-hfrontend.vercel.app"  // Your deployed frontend
+        // Use allowedOriginPatterns instead of allowedOrigins
+        config.setAllowedOriginPatterns(List.of(
+                "http://localhost:5173",
+                "https://ib-hfrontend.vercel.app"
         ));
+
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 
