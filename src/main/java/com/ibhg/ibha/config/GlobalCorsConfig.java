@@ -20,10 +20,9 @@ public class GlobalCorsConfig {
 
         // Add dev + production frontend domains
         config.setAllowedOrigins(List.of(
-                "http://localhost:5173",
-                "https://your-production-domain.com"
+                "http://localhost:5173",                // Local development
+                "https://ib-hfrontend.vercel.app"  // Your deployed frontend
         ));
-
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 
