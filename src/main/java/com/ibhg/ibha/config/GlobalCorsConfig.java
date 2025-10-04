@@ -16,27 +16,27 @@ public class GlobalCorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        // Allow cookies/authorization headers (e.g., JWT)
+        // Allow credentials (e.g. cookies, Authorization headers)
         config.setAllowCredentials(true);
 
-        // Allow both your frontend (Vercel) and localhost for dev
+        // Allowed frontend origins (production + local dev)
         config.setAllowedOrigins(List.of(
             "https://ib-hfrontend.vercel.app",
             "http://localhost:5173"
         ));
 
-        // Allow all headers (Authorization, Content-Type, etc.)
+        // Allow all headers
         config.setAllowedHeaders(List.of("*"));
 
-        // Allow ALL HTTP methods
+        // Allow all HTTP methods
         config.setAllowedMethods(Arrays.asList(
             "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"
         ));
 
-        // Optional: expose some headers to frontend (if you use them)
+        // Optional: expose some headers to the frontend
         config.setExposedHeaders(List.of("Authorization", "Content-Type"));
 
-        // Register the config for all endpoints
+        // Register this configuration for all routes
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
 
