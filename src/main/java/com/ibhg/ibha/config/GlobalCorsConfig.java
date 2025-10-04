@@ -17,15 +17,14 @@ public class GlobalCorsConfig {
 
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-
-        // Use allowedOriginPatterns instead of allowedOrigins
         config.setAllowedOriginPatterns(List.of(
-                "http://localhost:5173",
-                "https://ib-hfrontend.vercel.app"
+            "http://localhost:5173",
+            "https://ib-hfrontend.vercel.app",
+            "*" // optional for testing
         ));
-
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
+        config.addExposedHeader("Authorization"); // optional
 
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
