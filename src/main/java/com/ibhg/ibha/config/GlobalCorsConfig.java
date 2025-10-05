@@ -17,16 +17,23 @@ public class GlobalCorsConfig {
 
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
+
+        // ✅ Only include your known frontend origins
         config.setAllowedOriginPatterns(List.of(
-            "http://localhost:5173",
-            "https://ib-hfrontend.vercel.app",
-            "*" // optional for testing
+                "https://ib-hfrontend.vercel.app",
+                "http://localhost:5173"
         ));
+
+        // ✅ Allow all headers and methods
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-        config.addExposedHeader("Authorization"); // optional
 
+        // ✅ Expose authorization header for frontend access (if needed)
+        config.addExposedHeader("Authorization");
+
+        // ✅ Apply to all paths
         source.registerCorsConfiguration("/**", config);
+
         return new CorsFilter(source);
     }
 }
